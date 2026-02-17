@@ -7,7 +7,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['namespace' => 'Api'], function () {
+Route::group(['middleware' => 'auth:sanctum','namespace' => 'Api'], function () {
     Route::group(['namespace' => 'Role', 'prefix' => 'roles'], function () {
         Route::get('/', [App\Http\Controllers\Api\RoleController::class, 'index'])->name('api.roles.index');
     });
